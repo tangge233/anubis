@@ -1,4 +1,8 @@
-defaultBaseImage: cgr.dev/chainguard/static
+# Base image must publish linux/arm/v7: cgr.dev/chainguard/static only ships
+# linux/amd64 and linux/arm64, which makes ko fail with "no matching platforms
+# in base image index" when building the linux/arm/v7 target below.
+# gcr.io/distroless/static-debian12 ships amd64, arm64 and arm/v7.
+defaultBaseImage: gcr.io/distroless/static-debian12
 defaultPlatforms:
   - linux/arm64
   - linux/amd64
